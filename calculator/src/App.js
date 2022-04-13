@@ -9,6 +9,25 @@ function App() {
   const [operand1, setOperant1] = useState(1);
   const [operand2, setOperant2] = useState(1);
 
+  function OperationButton({ classNa, funct, symbol }) {
+    return (
+      <>
+        <button className={classNa} onClick={funct}>
+          {" "}
+          {symbol}{" "}
+        </button>
+      </>
+    );
+  }
+  function NumberButton({ number }) {
+    return (
+      <>
+        <button onClick={addNumberString} id={number}>
+          {number}
+        </button>
+      </>
+    );
+  }
   const calculator = {
     _operation: undefined,
 
@@ -41,8 +60,8 @@ function App() {
   function clearFields() {
     calculator.clearCalculator();
     setResult1("");
-    setValue1("SetValue 1");
-    setValue2("SetValue 2");
+    setValue1("Set Value");
+    setValue2("Set Value");
   }
   function addNumberString(e) {
     setResult1(result1 + e.target.id);
@@ -108,59 +127,32 @@ function App() {
         </div>
 
         <div className="container__buttons">
-          <button onClick={addNumberString} id="7">
-            7
-          </button>
-          <button onClick={addNumberString} id="8">
-            8
-          </button>
-          <button onClick={addNumberString} id="9">
-            9
-          </button>
-          <button class="multiply" onClick={multiply}>
-            {" "}
-            x{" "}
-          </button>
+          <NumberButton number="7" />
+          <NumberButton number="8" />
+          <NumberButton number="9" />
 
-          <button onClick={addNumberString} id="4">
-            4
-          </button>
-          <button onClick={addNumberString} id="5">
-            5
-          </button>
-          <button onClick={addNumberString} id="6">
-            6
-          </button>
-          <button className="divide" onClick={divide}>
-            {" "}
-            /{" "}
-          </button>
+          <OperationButton classNa="multiply" funct={multiply} symbol="x" />
 
-          <button onClick={addNumberString} id="1">
-            1
-          </button>
-          <button onClick={addNumberString} id="2">
-            2
-          </button>
-          <button onClick={addNumberString} id="3">
-            3
-          </button>
+          <NumberButton number="4" />
+          <NumberButton number="5" />
+          <NumberButton number="6" />
+
+          <OperationButton classNa="divide" funct={divide} symbol="/" />
+
+          <NumberButton number="1" />
+          <NumberButton number="2" />
+          <NumberButton number="3" />
+
           <button onClick={clearFields} class="clear">
             {" "}
             c<br />l<br />e<br />a<br />r{" "}
           </button>
 
-          <button className="add" onClick={add}>
-            {" "}
-            +{" "}
-          </button>
-          <button onClick={addNumberString} id="0">
-            0
-          </button>
-          <button className="subtract" onClick={subtract}>
-            {" "}
-            -{" "}
-          </button>
+          <OperationButton classNa="add" funct={add} symbol="+" />
+
+          <NumberButton number="0" />
+
+          <OperationButton classNa="subtract" funct={subtract} symbol="-" />
         </div>
       </section>
     </div>
